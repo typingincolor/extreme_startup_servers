@@ -24,14 +24,11 @@ public class ExtremeStartup {
 
     public static void main(String[] args) {
         final ExtremeStartup server = new ExtremeStartup("team name");
-        setPort(1337);
-        get(new Route("/") {
+        port(1337);
 
-            @Override
-            public Object handle(Request request, Response response) {
-                return server.answer(request.queryParams("q"));
-            }
+        get("/", (request, response) -> {
+            return server.answer(request.queryParams("q"));
+
         });
     }
-
 }
